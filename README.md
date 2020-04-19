@@ -22,4 +22,4 @@ Run in console:
 
 ### JSON
 
-[![asciicast](https://asciinema.org/a/321737.svg)](https://asciinema.org/a/321737)
+[![asciicast](https://asciinema.org/a/321761.svg)](https://asciinema.org/a/321761)
