@@ -3,8 +3,6 @@ import fs from 'fs';
 import path from 'path';
 
 const genDiff = (before, after) => {
-  // const firstPath = fs.readFileSync(path.resolve(before));
-  // const secondPath = fs.readFileSync(path.resolve(after));
   const firstObject = JSON.parse(fs.readFileSync(path.resolve(before)));
   const secondObject = JSON.parse(fs.readFileSync(path.resolve(after)));
   const unitedKeys = _.uniq([...Object.keys(firstObject), ...Object.keys(secondObject)]);
@@ -34,13 +32,3 @@ const genDiff = (before, after) => {
 };
 
 export default genDiff;
-
-/* $ gendiff before.json after.json
-{
-    host: hexlet.io
-  + timeout: 20
-  - timeout: 50
-  - proxy: 123.234.53.22
-  + verbose: true
-  - follow: false
-} */
