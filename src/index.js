@@ -23,8 +23,7 @@ const genDiff = (before, after) => {
       return acc;
     }
 
-    acc.push(`  - ${key}: ${firstObject[key]}\n`);
-    acc.push(`  + ${key}: ${secondObject[key]}\n`);
+    acc.push(`  - ${key}: ${firstObject[key]}\n`, `  + ${key}: ${secondObject[key]}\n`);
     return acc;
   }, []);
 
