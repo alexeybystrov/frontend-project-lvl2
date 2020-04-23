@@ -1,8 +1,9 @@
 # Generate Difference
 
+[![Node CI](https://github.com/alexeybystrov/frontend-project-lvl2/workflows/Node%20CI/badge.svg)](https://github.com/alexeybystrov/frontend-project-lvl2/actions)
 [![Maintainability](https://api.codeclimate.com/v1/badges/beaa2ea647904e4b7588/maintainability)](https://codeclimate.com/github/alexeybystrov/frontend-project-lvl2/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/beaa2ea647904e4b7588/test_coverage)](https://codeclimate.com/github/alexeybystrov/frontend-project-lvl2/test_coverage)
-[![Node CI](https://github.com/alexeybystrov/frontend-project-lvl2/workflows/ESLint%20check/badge.svg)](https://github.com/alexeybystrov/frontend-project-lvl2/actions) -->
+
 
 ## genDiff is a cli-utility that compares two versions of files and shows the difference of them
 
