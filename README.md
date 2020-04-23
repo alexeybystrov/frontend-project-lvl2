@@ -24,3 +24,9 @@ Run in console:
 ### JSON
 
 [![asciicast](https://asciinema.org/a/321761.svg)](https://asciinema.org/a/321761)
+
+---
+
+### YAML
+
+[![asciicast](https://asciinema.org/a/323330.svg)](https://asciinema.org/a/323330)

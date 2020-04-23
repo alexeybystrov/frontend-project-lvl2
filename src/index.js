@@ -1,10 +1,9 @@
 import _ from 'lodash';
-import fs from 'fs';
-import path from 'path';
+import parser from './parsers.js';
 
 const genDiff = (before, after) => {
-  const firstObject = JSON.parse(fs.readFileSync(path.resolve(before)));
-  const secondObject = JSON.parse(fs.readFileSync(path.resolve(after)));
+  const firstObject = parser(before);
+  const secondObject = parser(after);
   const unitedKeys = _.uniq([...Object.keys(firstObject), ...Object.keys(secondObject)]);
 
   const diff = unitedKeys.reduce((acc, key) => {
