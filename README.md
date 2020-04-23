@@ -30,3 +30,9 @@ Run in console:
 ### YAML
 
 [![asciicast](https://asciinema.org/a/323330.svg)](https://asciinema.org/a/323330)
+
+---
+
+### INI
+
+[![asciicast](https://asciinema.org/a/323370.svg)](https://asciinema.org/a/323370)

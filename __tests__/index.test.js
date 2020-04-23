@@ -17,3 +17,10 @@ test('YML', () => {
 
   expect(genDiff(before, after)).toMatch(result);
 });
+
+test('INI', () => {
+  const before = path.resolve('__tests__/fixtures/before.ini');
+  const after = path.resolve('__tests__/fixtures/after.ini');
+
+  expect(genDiff(before, after)).toMatch(result);
+});

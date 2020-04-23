@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import yaml from 'js-yaml';
+import ini from 'ini';
 
 const parser = (pathToFile) => {
   const fullPathToFile = path.resolve(pathToFile);
@@ -13,6 +14,9 @@ const parser = (pathToFile) => {
       break;
     case '.yml':
       result = yaml.safeLoad(fileContent);
+      break;
+    case '.ini':
+      result = ini.parse(fileContent);
       break;
     default:
       // do nothing
