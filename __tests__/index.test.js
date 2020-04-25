@@ -2,25 +2,28 @@ import path from 'path';
 import fs from 'fs';
 import genDiff from '../src/index.js';
 
-const result = fs.readFileSync(path.resolve('__tests__/fixtures/result'), 'utf8');
+const fullPathToFile = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
+// const readFile = (filename) => fs.readFileSync(fullPathToFile(filename), 'utf8');
+
+const result = fs.readFileSync(fullPathToFile('result'), 'utf8');
 
 test('JSON', () => {
-  const before = path.resolve('__tests__/fixtures/before.json');
-  const after = path.resolve('__tests__/fixtures/after.json');
+  const before = fullPathToFile('before.json');
+  const after = fullPathToFile('after.json');
 
   expect(genDiff(before, after)).toMatch(result);
 });
 
 test('YML', () => {
-  const before = path.resolve('__tests__/fixtures/before.yml');
-  const after = path.resolve('__tests__/fixtures/after.yml');
+  const before = fullPathToFile('before.yml');
+  const after = fullPathToFile('after.yml');
 
   expect(genDiff(before, after)).toMatch(result);
 });
 
 test('INI', () => {
-  const before = path.resolve('__tests__/fixtures/before.ini');
-  const after = path.resolve('__tests__/fixtures/after.ini');
+  const before = fullPathToFile('before.ini');
+  const after = fullPathToFile('after.ini');
 
   expect(genDiff(before, after)).toMatch(result);
 });
