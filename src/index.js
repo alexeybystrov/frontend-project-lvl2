@@ -8,26 +8,55 @@ const genDiff = (before, after) => {
 
   const diff = unitedKeys.reduce((acc, key) => {
     if (!_.has(firstObject, key)) {
-      acc.push(`  + ${key}: ${secondObject[key]}\n`);
+      acc.push({ name: key, value: secondObject[key], status: 'added' });
       return acc;
     }
 
     if (!_.has(secondObject, key)) {
-      acc.push(`  - ${key}: ${firstObject[key]}\n`);
+      acc.push({ name: key, value: firstObject[key], status: 'deleted' });
       return acc;
     }
 
     if (firstObject[key] === secondObject[key]) {
-      acc.push(`    ${key}: ${firstObject[key]}\n`);
+      acc.push({ name: key, value: firstObject[key], status: 'unmodified' });
       return acc;
     }
 
-    acc.push(`  - ${key}: ${firstObject[key]}\n`);
-    acc.push(`  + ${key}: ${secondObject[key]}\n`);
+    acc.push({ name: key, value: firstObject[key], status: 'deleted' });
+    acc.push({ name: key, value: secondObject[key], status: 'added' });
     return acc;
   }, []);
 
-  return `{\n${diff.join('')}}`;
+  const formatter = diff.map(({ name, value, status }) => {
+    let result;
+    switch (status) {
+      case 'added':
+        result = `  + ${name}: ${value}`;
+        break;
+      case 'deleted':
+        result = `  - ${name}: ${value}`;
+        break;
+      case 'unmodified':
+        result = `    ${name}: ${value}`;
+        break;
+      default:
+        // do nothing
+    }
+    return result;
+  });
+
+  return `{\n${formatter.join('\n')}\n}`;
+  // return diff;
 };
 
 export default genDiff;
+
+
+/* {
+    host: hexlet.io
+  - timeout: 50
+  + timeout: 20
+  - proxy: 123.234.53.22
+  - follow: false
+  + verbose: true
+} */
