@@ -21,18 +21,36 @@ Run in console:
 
 ---
 
-### JSON
+### flat JSON
 
 [![asciicast](https://asciinema.org/a/321761.svg)](https://asciinema.org/a/321761)
 
 ---
 
-### YAML
+### flat YAML
 
 [![asciicast](https://asciinema.org/a/323330.svg)](https://asciinema.org/a/323330)
 
 ---
 
-### INI
+### flat INI
 
 [![asciicast](https://asciinema.org/a/323370.svg)](https://asciinema.org/a/323370)
+
+---
+
+### recursive JSON
+
+[![asciicast](https://asciinema.org/a/324203.svg)](https://asciinema.org/a/324203)
+
+---
+
+### recursive YAML
+
+[![asciicast](https://asciinema.org/a/324204.svg)](https://asciinema.org/a/324204)
+
+---
+
+### recursive INI
+
+[![asciicast](https://asciinema.org/a/324202.svg)](https://asciinema.org/a/324202)

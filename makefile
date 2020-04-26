@@ -15,7 +15,7 @@ publish:
 	npm publish --dry-run
 
 run:
-	npx babel-node src/bin/gendiff.js __tests__/fixtures/before.json __tests__/fixtures/after.json
+	npx babel-node src/bin/gendiff.js __fixtures__/Before.json __fixtures__/After.json
 
 lint:
 	npx eslint .
