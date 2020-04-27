@@ -3,7 +3,6 @@ import fs from 'fs';
 import genDiff from '../src/index.js';
 
 const fullPathToFile = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
-// const readFile = (filename) => fs.readFileSync(fullPathToFile(filename), 'utf8');
 
 const result = fs.readFileSync(fullPathToFile('result'), 'utf8');
 
