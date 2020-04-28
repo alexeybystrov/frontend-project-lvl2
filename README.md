@@ -54,3 +54,9 @@ Run in console:
 ### recursive INI
 
 [![asciicast](https://asciinema.org/a/324202.svg)](https://asciinema.org/a/324202)
+
+---
+
+### plain output
+
+[![asciicast](https://asciinema.org/a/324835.svg)](https://asciinema.org/a/324835)
