@@ -1,5 +1,2 @@
-import formatterPlain from './formatterPlain.js';
-import formatterJson from './formatterJson.js';
-import formatterNested from './formatterNested.js';
-
-export { formatterPlain, formatterJson, formatterNested };
+export { default as formatterPlain } from './formatterPlain.js';
+export { default as formatterNested } from './formatterNested.js';

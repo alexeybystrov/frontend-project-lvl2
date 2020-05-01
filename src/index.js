@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import parser from './parsers.js';
-import { formatterPlain, formatterJson, formatterNested } from './formatters/formatters.js';
+import { formatterPlain, formatterNested } from './formatters/formatters.js';
 
 const getDifference = (firstObject, secondObject) => {
   const unitedKeys = _.uniq([...Object.keys(firstObject), ...Object.keys(secondObject)]);
@@ -41,7 +41,7 @@ const genDiff = (before, after, format) => {
     case 'plain':
       return formatterPlain(result);
     case 'json':
-      return formatterJson(result);
+      return JSON.stringify(result);
     default:
       return formatterNested(result);
   }
