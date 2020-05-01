@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import parser from './parsers.js';
 import formatterNested from './formatters/formatterNested.js';
+//import formatterPlain from './formatters/formatterPlain.js';
 import formatterJson from './formatters/formatterJson.js';
-import formatterPlain from './formatters/formatterPlain.js';
 
 const getDifference = (firstObject, secondObject) => {
   const unitedKeys = _.uniq([...Object.keys(firstObject), ...Object.keys(secondObject)]);
