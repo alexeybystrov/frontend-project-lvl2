@@ -27,23 +27,14 @@ const parser = (pathToFile) => {
     return iter(data);
   };
 
-
-  let result;
   switch (path.extname(fullPathToFile)) {
-    case '.json':
-      result = JSON.parse(fileContent);
-      break;
     case '.yml':
-      result = yaml.safeLoad(fileContent);
-      break;
+      return yaml.safeLoad(fileContent);
     case '.ini':
-      result = iniParser(fileContent);
-      break;
+      return iniParser(fileContent);
     default:
-      // do nothing
+      return JSON.parse(fileContent);
   }
-
-  return result;
 };
 
 export default parser;
