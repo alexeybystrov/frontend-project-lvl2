@@ -60,3 +60,9 @@ Run in console:
 ### plain output
 
 [![asciicast](https://asciinema.org/a/324835.svg)](https://asciinema.org/a/324835)
+
+---
+
+### json output
+
+[![asciicast](https://asciinema.org/a/325789.svg)](https://asciinema.org/a/325789)
