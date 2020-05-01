@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import genDiff from '../src/index.js';
 
-const fullPathToFile = (filename) => path.resolve(__dirname, '..', './__fixtures__', filename);
+const fullPathToFile = (filename) => path.resolve(__dirname, '..', '__fixtures__', filename);
 
 const resultNested = fs.readFileSync(fullPathToFile('resultNested'), 'utf8');
 const resultPlain = fs.readFileSync(fullPathToFile('resultPlain'), 'utf8');
