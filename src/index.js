@@ -3,34 +3,29 @@ import parse from './parsers.js';
 import { formatterPlain, formatterNested } from './formatters/formatters.js';
 
 const getDifference = (firstObject, secondObject) => {
-  const unitedKeys = _.uniq([...Object.keys(firstObject), ...Object.keys(secondObject)]);
+  const unitedKeys = _.union(Object.keys(firstObject), Object.keys(secondObject));
 
-  const diff = unitedKeys.reduce((acc, key) => {
+  const diff = unitedKeys.map((key) => {
     if (!_.has(firstObject, key)) {
-      acc.push({ name: key, value: secondObject[key], status: 'added' });
-      return acc;
+      return { name: key, value: secondObject[key], status: 'added' };
     }
 
     if (!_.has(secondObject, key)) {
-      acc.push({ name: key, value: firstObject[key], status: 'deleted' });
-      return acc;
+      return { name: key, value: firstObject[key], status: 'deleted' };
     }
 
     if (firstObject[key] === secondObject[key]) {
-      acc.push({ name: key, value: firstObject[key], status: 'unmodified' });
-      return acc;
+      return { name: key, value: firstObject[key], status: 'unmodified' };
     }
 
     if (_.isObjectLike(firstObject[key]) && _.isObjectLike(secondObject[key])) {
-      acc.push({ name: key, children: getDifference(firstObject[key], secondObject[key]) });
-      return acc;
+      return { name: key, children: getDifference(firstObject[key], secondObject[key]) };
     }
 
-    acc.push({
+    return {
       name: key, first: firstObject[key], second: secondObject[key], status: 'modified',
-    });
-    return acc;
-  }, []);
+    };
+  });
 
   return diff;
 };
