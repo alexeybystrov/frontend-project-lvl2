@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import parser from './parsers.js';
+import parse from './parsers.js';
 import { formatterPlain, formatterNested } from './formatters/formatters.js';
 
 const getDifference = (firstObject, secondObject) => {
@@ -36,7 +36,7 @@ const getDifference = (firstObject, secondObject) => {
 };
 
 const genDiff = (before, after, format) => {
-  const result = getDifference(parser(before), parser(after));
+  const result = getDifference(parse(before), parse(after));
   switch (format) {
     case 'plain':
       return formatterPlain(result);
