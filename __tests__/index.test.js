@@ -4,33 +4,25 @@ import genDiff from '../src/index.js';
 
 const fullPathToFile = (filename) => path.resolve(__dirname, '..', '__fixtures__', filename);
 
-const resultNested = fs.readFileSync(fullPathToFile('resultNested'), 'utf8');
-const resultPlain = fs.readFileSync(fullPathToFile('resultPlain'), 'utf8');
-const resultJson = fs.readFileSync(fullPathToFile('resultJson'), 'utf8');
+let resultNested;
+let resultPlain;
+let resultJson;
 
-test('JSON', () => {
-  const before = fullPathToFile('before.json');
-  const after = fullPathToFile('after.json');
-
-  expect(genDiff(before, after)).toMatch(resultNested);
-  expect(genDiff(before, after, 'plain')).toMatch(resultPlain);
-  expect(genDiff(before, after, 'json')).toMatch(resultJson);
+beforeAll(() => {
+  resultNested = fs.readFileSync(fullPathToFile('resultNested'), 'utf8');
+  resultPlain = fs.readFileSync(fullPathToFile('resultPlain'), 'utf8');
+  resultJson = fs.readFileSync(fullPathToFile('resultJson'), 'utf8');
 });
 
-test('YML', () => {
-  const before = fullPathToFile('before.yml');
-  const after = fullPathToFile('after.yml');
+test.each([
+  ['before.json', 'after.json'],
+  ['before.yml', 'after.yml'],
+  ['before.ini', 'after.ini'],
+])('compares %s and %s and mathces the difference with prepared result', (before, after) => {
+  const first = fullPathToFile(before);
+  const second = fullPathToFile(after);
 
-  expect(genDiff(before, after)).toMatch(resultNested);
-  expect(genDiff(before, after, 'plain')).toMatch(resultPlain);
-  expect(genDiff(before, after, 'json')).toMatch(resultJson);
-});
-
-test('INI', () => {
-  const before = fullPathToFile('before.ini');
-  const after = fullPathToFile('after.ini');
-
-  expect(genDiff(before, after)).toMatch(resultNested);
-  expect(genDiff(before, after, 'plain')).toMatch(resultPlain);
-  expect(genDiff(before, after, 'json')).toMatch(resultJson);
+  expect(genDiff(first, second)).toMatch(resultNested);
+  expect(genDiff(first, second, 'plain')).toMatch(resultPlain);
+  expect(genDiff(first, second, 'json')).toMatch(resultJson);
 });
