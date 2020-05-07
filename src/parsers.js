@@ -4,10 +4,10 @@ import yaml from 'js-yaml';
 import ini from 'ini';
 import _ from 'lodash';
 
-const parser = (pathToFile) => {
-  const fullPathToFile = path.resolve(pathToFile);
-  const fileContent = fs.readFileSync(fullPathToFile, 'utf8');
+const readFile = (dir) => fs.readFileSync(path.resolve(dir), 'utf8');
 
+const parser = (pathToFile) => {
+  const fileContent = readFile(pathToFile);
   const iniParser = (content) => {
     const data = ini.parse(content);
 
@@ -28,7 +28,7 @@ const parser = (pathToFile) => {
   };
 
   let result;
-  switch (path.extname(fullPathToFile)) {
+  switch (path.extname(path.resolve(pathToFile))) {
     case '.yml':
       result = yaml.safeLoad(fileContent);
       break;
