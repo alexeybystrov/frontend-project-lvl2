@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import parse from './parsers.js';
-import format from './formatters/formatters.js';
+import format from './formatters/index.js';
 
 const getDifference = (firstObject, secondObject) => {
   const unitedKeys = _.union(Object.keys(firstObject), Object.keys(secondObject));
