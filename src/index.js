@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import parse from './parsers.js';
-import formatter from './formatters/formatters.js';
+import format from './formatters/formatters.js';
 
 const getDifference = (firstObject, secondObject) => {
   const unitedKeys = _.union(Object.keys(firstObject), Object.keys(secondObject));
@@ -30,5 +30,5 @@ const getDifference = (firstObject, secondObject) => {
   return diff;
 };
 
-export default (before, after, format) => (
-  formatter(getDifference(parse(before), parse(after)), format));
+export default (before, after, outputFormat) => (
+  format(getDifference(parse(before), parse(after)), outputFormat));

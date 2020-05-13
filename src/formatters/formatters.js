@@ -1,15 +1,15 @@
-import formatterPlain from './formatterPlain.js';
-import formatterNested from './formatterNested.js';
+import formatPlain from './formatterPlain.js';
+import formatNested from './formatterNested.js';
 
-const formatter = (diff, format) => {
-  switch (format) {
+const format = (diff, outputFormat) => {
+  switch (outputFormat) {
     case 'plain':
-      return formatterPlain(diff);
+      return formatPlain(diff);
     case 'json':
       return JSON.stringify(diff);
     default:
-      return formatterNested(diff);
+      return formatNested(diff);
   }
 };
 
-export default formatter;
+export default format;
