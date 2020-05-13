@@ -7,7 +7,7 @@ const stringify = (item, spaces) => {
   return item;
 };
 
-const formatter = (diffData) => {
+const format = (diffData) => {
   const iter = (data, spacesCount = 2) => data.map(({
     name, value, first, second, status, children,
   }) => {
@@ -39,4 +39,4 @@ const formatter = (diffData) => {
   return `{\n${iter(diffData)}\n}`;
 };
 
-export default formatter;
+export default format;

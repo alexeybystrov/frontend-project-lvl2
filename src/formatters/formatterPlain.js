@@ -1,4 +1,4 @@
-const formatter = (diffData, concatedName = '') => diffData
+const format = (diffData, concatedName = '') => diffData
   .filter(({ status }) => (status !== 'unmodified'))
   .map(({
     name, value, first, second, status, children,
@@ -15,16 +15,25 @@ const formatter = (diffData, concatedName = '') => diffData
     };
 
     const newName = concatedName === '' ? name : `${concatedName}.${name}`;
+
+    let result;
     switch (status) {
       case 'added':
-        return `Property '${newName}' was added with value: ${formatValue(value)}`;
+        result = `Property '${newName}' was added with value: ${formatValue(value)}`;
+        break;
       case 'deleted':
-        return `Property '${newName}' was deleted`;
+        result = `Property '${newName}' was deleted`;
+        break;
       case 'modified':
-        return `Property '${newName}' was changed from ${formatValue(first)} to ${formatValue(second)}`;
+        result = `Property '${newName}' was changed from ${formatValue(first)} to ${formatValue(second)}`;
+        break;
+      case undefined:
+        result = format(children, newName);
+        break;
       default:
-        return formatter(children, newName);
+        // do nothing;
     }
+    return result;
   }).join('\n');
 
-export default formatter;
+export default format;
