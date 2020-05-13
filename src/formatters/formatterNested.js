@@ -1,30 +1,39 @@
 import _ from 'lodash';
 
+const stringify = (item, spaces) => {
+  if (_.isObjectLike(item)) {
+    return Object.keys(item).map((key) => (`{\n${spaces}      ${key}: ${stringify(item[key])}\n${spaces}  }`));
+  }
+  return item;
+};
+
 const formatter = (diffData) => {
   const iter = (data, spacesCount = 2) => data.map(({
     name, value, first, second, status, children,
   }) => {
     const spaces = ' '.repeat(spacesCount);
 
-    const stringify = (item) => {
-      if (_.isObjectLike(item)) {
-        return Object.keys(item).map((key) => (`{\n${spaces}      ${key}: ${stringify(item[key])}\n${spaces}  }`));
-      }
-      return item;
-    };
-
+    let result;
     switch (status) {
       case 'added':
-        return `${spaces}+ ${name}: ${stringify(value)}`;
+        result = `${spaces}+ ${name}: ${stringify(value, spaces)}`;
+        break;
       case 'deleted':
-        return `${spaces}- ${name}: ${stringify(value)}`;
+        result = `${spaces}- ${name}: ${stringify(value, spaces)}`;
+        break;
       case 'unmodified':
-        return `${spaces}  ${name}: ${stringify(value)}`;
+        result = `${spaces}  ${name}: ${stringify(value, spaces)}`;
+        break;
       case 'modified':
-        return `${spaces}- ${name}: ${stringify(first)}\n${spaces}+ ${name}: ${stringify(second)}`;
+        result = `${spaces}- ${name}: ${stringify(first, spaces)}\n${spaces}+ ${name}: ${stringify(second, spaces)}`;
+        break;
+      case undefined:
+        result = `${spaces}  ${name}: {\n${iter(children, spacesCount + 4)}\n${spaces}  }`;
+        break;
       default:
-        return `${spaces}  ${name}: {\n${iter(children, spacesCount + 4)}\n${spaces}  }`;
+        // do nothing;
     }
+    return result;
   }).join('\n');
 
   return `{\n${iter(diffData)}\n}`;
