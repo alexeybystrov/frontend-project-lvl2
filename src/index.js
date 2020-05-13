@@ -30,5 +30,10 @@ const getDifference = (firstObject, secondObject) => {
   return diff;
 };
 
-export default (before, after, outputFormat) => (
-  format(getDifference(parse(before), parse(after)), outputFormat));
+export default (before, after, outputFormat) => {
+  const first = parse(before);
+  const second = parse(after);
+  const difference = getDifference(first, second);
+
+  return format(difference, outputFormat);
+};
