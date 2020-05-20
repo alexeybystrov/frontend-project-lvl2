@@ -13,27 +13,20 @@ const format = (diffData) => {
   }) => {
     const spaces = ' '.repeat(spacesCount);
 
-    let result;
     switch (status) {
       case 'added':
-        result = `${spaces}+ ${name}: ${stringify(value, spaces)}`;
-        break;
+        return `${spaces}+ ${name}: ${stringify(value, spaces)}`;
       case 'deleted':
-        result = `${spaces}- ${name}: ${stringify(value, spaces)}`;
-        break;
+        return `${spaces}- ${name}: ${stringify(value, spaces)}`;
       case 'unmodified':
-        result = `${spaces}  ${name}: ${stringify(value, spaces)}`;
-        break;
+        return `${spaces}  ${name}: ${stringify(value, spaces)}`;
       case 'modified':
-        result = `${spaces}- ${name}: ${stringify(first, spaces)}\n${spaces}+ ${name}: ${stringify(second, spaces)}`;
-        break;
+        return `${spaces}- ${name}: ${stringify(first, spaces)}\n${spaces}+ ${name}: ${stringify(second, spaces)}`;
       case undefined:
-        result = `${spaces}  ${name}: {\n${iter(children, spacesCount + 4)}\n${spaces}  }`;
-        break;
+        return `${spaces}  ${name}: {\n${iter(children, spacesCount + 4)}\n${spaces}  }`;
       default:
-        // do nothing;
+        throw new Error('Unexpected status!');
     }
-    return result;
   }).join('\n');
 
   return `{\n${iter(diffData)}\n}`;

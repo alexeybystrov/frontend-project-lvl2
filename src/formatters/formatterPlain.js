@@ -16,24 +16,18 @@ const format = (diffData, concatedName = '') => diffData
 
     const newName = concatedName === '' ? name : `${concatedName}.${name}`;
 
-    let result;
     switch (status) {
       case 'added':
-        result = `Property '${newName}' was added with value: ${formatValue(value)}`;
-        break;
+        return `Property '${newName}' was added with value: ${formatValue(value)}`;
       case 'deleted':
-        result = `Property '${newName}' was deleted`;
-        break;
+        return `Property '${newName}' was deleted`;
       case 'modified':
-        result = `Property '${newName}' was changed from ${formatValue(first)} to ${formatValue(second)}`;
-        break;
+        return `Property '${newName}' was changed from ${formatValue(first)} to ${formatValue(second)}`;
       case undefined:
-        result = format(children, newName);
-        break;
+        return format(children, newName);
       default:
-        // do nothing;
+        throw new Error('Unexpected status!');
     }
-    return result;
   }).join('\n');
 
 export default format;
