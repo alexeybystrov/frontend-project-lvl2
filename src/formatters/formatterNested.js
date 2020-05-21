@@ -1,10 +1,10 @@
 import _ from 'lodash';
 
 const stringify = (item, spaces) => {
-  if (_.isObjectLike(item)) {
-    return Object.keys(item).map((key) => (`{\n${spaces}      ${key}: ${stringify(item[key])}\n${spaces}  }`));
+  if (!_.isObjectLike(item)) {
+    return item;
   }
-  return item;
+  return Object.keys(item).map((key) => (`{\n${spaces}      ${key}: ${stringify(item[key])}\n${spaces}  }`));
 };
 
 const format = (diffData) => {
