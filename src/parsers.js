@@ -7,37 +7,31 @@ const iniParser = (content) => {
 
   const iter = (node) => Object.entries(node).reduce((acc, [key, value]) => {
     if (_.isObjectLike(value)) {
-      acc[key] = iter(value);
-    } else if (typeof (value) === 'boolean') {
-      acc[key] = value;
-    } else if (!Number.isNaN(Number(value))) {
-      acc[key] = Number(value);
-    } else {
-      acc[key] = value;
+      return { ...acc, [key]: iter(value) };
     }
-    return acc;
+    if (typeof (value) === 'boolean') {
+      return { ...acc, [key]: value };
+    }
+    if (!Number.isNaN(Number(value))) {
+      return { ...acc, [key]: Number(value) };
+    }
+    return { ...acc, [key]: value };
   }, {});
 
   return iter(data);
 };
 
-const parser = (fileContent, inputFormat) => {
-  let result;
+const parse = (content, inputFormat) => {
   switch (inputFormat) {
     case '.yml':
-      result = yaml.safeLoad(fileContent);
-      break;
+      return yaml.safeLoad(content);
     case '.ini':
-      result = iniParser(fileContent);
-      break;
+      return iniParser(content);
     case '.json':
-      result = JSON.parse(fileContent);
-      break;
+      return JSON.parse(content);
     default:
-        // do nothing;
+      throw new Error('Unexpected input format!');
   }
-
-  return result;
 };
 
-export default parser;
+export default parse;
