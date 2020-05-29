@@ -1,7 +1,7 @@
 const format = (diffData, concatedName = '') => diffData
   .filter(({ status }) => (status !== 'unmodified'))
   .map(({
-    name, value, first, second, status, children,
+    name, value, oldValue, newValue, status, children,
   }) => {
     const formatValue = (item) => {
       switch (typeof item) {
@@ -22,7 +22,7 @@ const format = (diffData, concatedName = '') => diffData
       case 'deleted':
         return `Property '${newName}' was deleted`;
       case 'modified':
-        return `Property '${newName}' was changed from ${formatValue(first)} to ${formatValue(second)}`;
+        return `Property '${newName}' was changed from ${formatValue(oldValue)} to ${formatValue(newValue)}`;
       case undefined:
         return format(children, newName);
       default:

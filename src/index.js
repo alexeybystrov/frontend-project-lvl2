@@ -28,18 +28,18 @@ const getDifference = (firstObject, secondObject) => {
     }
 
     return {
-      name: key, first: firstObject[key], second: secondObject[key], status: 'modified',
+      name: key, oldValue: firstObject[key], newValue: secondObject[key], status: 'modified',
     };
   });
 
   return diff;
 };
 
-export default (before, after, outputFormat) => {
-  const inputFormat = getInputFormat(before);
-  const first = parse(readFile(before), inputFormat);
-  const second = parse(readFile(after), inputFormat);
-  const difference = getDifference(first, second);
+export default (firstConfig, secondConfig, outputFormat) => {
+  const inputFormat = getInputFormat(firstConfig);
+  const parsedFirstConfig = parse(readFile(firstConfig), inputFormat);
+  const parsedSecondconfig = parse(readFile(secondConfig), inputFormat);
+  const difference = getDifference(parsedFirstConfig, parsedSecondconfig);
 
   return format(difference, outputFormat);
 };

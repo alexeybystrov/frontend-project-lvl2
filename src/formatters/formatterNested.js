@@ -9,7 +9,7 @@ const stringify = (item, spaces) => {
 
 const format = (diffData) => {
   const iter = (data, spacesCount = 2) => data.map(({
-    name, value, first, second, status, children,
+    name, value, oldValue, newValue, status, children,
   }) => {
     const spaces = ' '.repeat(spacesCount);
 
@@ -21,7 +21,7 @@ const format = (diffData) => {
       case 'unmodified':
         return `${spaces}  ${name}: ${stringify(value, spaces)}`;
       case 'modified':
-        return `${spaces}- ${name}: ${stringify(first, spaces)}\n${spaces}+ ${name}: ${stringify(second, spaces)}`;
+        return `${spaces}- ${name}: ${stringify(oldValue, spaces)}\n${spaces}+ ${name}: ${stringify(newValue, spaces)}`;
       case undefined:
         return `${spaces}  ${name}: {\n${iter(children, spacesCount + 4)}\n${spaces}  }`;
       default:
