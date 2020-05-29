@@ -24,7 +24,7 @@ const getDifference = (firstObject, secondObject) => {
     }
 
     if (_.isObjectLike(firstObject[key]) && _.isObjectLike(secondObject[key])) {
-      return { name: key, children: getDifference(firstObject[key], secondObject[key]) };
+      return { name: key, children: getDifference(firstObject[key], secondObject[key]), status: 'nested value' };
     }
 
     return {

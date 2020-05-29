@@ -23,7 +23,7 @@ const format = (diffData, concatedName = '') => diffData
         return `Property '${newName}' was deleted`;
       case 'modified':
         return `Property '${newName}' was changed from ${formatValue(oldValue)} to ${formatValue(newValue)}`;
-      case undefined:
+      case 'nested value':
         return format(children, newName);
       default:
         throw new Error(`Unexpected status: '${status}'!`);
