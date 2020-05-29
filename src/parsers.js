@@ -30,7 +30,7 @@ const parse = (content, inputFormat) => {
     case '.json':
       return JSON.parse(content);
     default:
-      throw new Error('Unexpected input format!');
+      throw new Error(`Unexpected input format: '${inputFormat}'!`);
   }
 };
 

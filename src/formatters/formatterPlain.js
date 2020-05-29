@@ -26,7 +26,7 @@ const format = (diffData, concatedName = '') => diffData
       case undefined:
         return format(children, newName);
       default:
-        throw new Error('Unexpected status!');
+        throw new Error(`Unexpected status: '${status}'!`);
     }
   }).join('\n');
 

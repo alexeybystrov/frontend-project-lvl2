@@ -25,7 +25,7 @@ const format = (diffData) => {
       case undefined:
         return `${spaces}  ${name}: {\n${iter(children, spacesCount + 4)}\n${spaces}  }`;
       default:
-        throw new Error('Unexpected status!');
+        throw new Error(`Unexpected status: '${status}'!`);
     }
   }).join('\n');
 
