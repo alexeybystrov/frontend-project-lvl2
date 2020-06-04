@@ -8,10 +8,10 @@ const stringify = (item, spaces) => {
 };
 
 const format = (diffData) => {
-  const iter = (data, depth = 2) => data.map(({
+  const iter = (data, depth = 0) => data.map(({
     name, value, oldValue, newValue, status, children,
   }) => {
-    const spaces = ' '.repeat(depth);
+    const spaces = ' '.repeat(depth === 0 ? 2 : 2 + depth * 4);
 
     switch (status) {
       case 'added':
@@ -23,7 +23,7 @@ const format = (diffData) => {
       case 'modified':
         return `${spaces}- ${name}: ${stringify(oldValue, spaces)}\n${spaces}+ ${name}: ${stringify(newValue, spaces)}`;
       case 'nested value':
-        return `${spaces}  ${name}: {\n${iter(children, depth + 4)}\n${spaces}  }`;
+        return `${spaces}  ${name}: {\n${iter(children, depth + 1)}\n${spaces}  }`;
       default:
         throw new Error(`Unexpected status: '${status}'!`);
     }
